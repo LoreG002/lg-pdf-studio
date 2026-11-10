@@ -52,7 +52,4 @@ listino, un preventivo o qualsiasi documento stampabile con il plugin PDF Studio
 
 ## Integrazione con Canva
 
-Se l'utente vuole un design **modificabile in Canva** invece di (o oltre a) un
-PDF, usa le skill del plugin Canva già installato (generate-design /
-export-design in formato PDF). PDF Studio resta il default per documenti
-testuali densi (preventivi, report, listini) dove serve controllo preciso.
+Se l'utente vuole una **locandina / poster su Canva**, attiva la skill `canva-poster` (modalità Art Director: template umani + autofill/iniezione dati, font pairing obbligatori, copy ultra-sintetico senza frasi ansiogene o forzature commerciali, allineamento a sinistra, titolo ≥ 25% dell'altezza e ≥ 30% di spazio negativo). Per altri formati modificabili in Canva usa le skill del plugin Canva già installato; PDF Studio in HTML/CSS resta il default per documenti testuali e multipagina (preventivi, report, listini, brochure e cataloghi) dove serve controllo tipografico al millimetro.

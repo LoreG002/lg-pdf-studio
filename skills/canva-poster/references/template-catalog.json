@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "description": "Catalogo interno di template Canva curati da designer umani per la skill canva-poster. Sostituisci i design_id / brand_template_id di esempio con gli ID reali dei tuoi template preferiti salvati nel tuo account Canva.",
+  "fontPairings": {
+    "impact_modern": {
+      "heading": "Monument Extended",
+      "body": "Inter",
+      "vibe": "Festival, clubbing, streetwear, mostre contemporanee, eventi urbani"
+    },
+    "editorial_classic": {
+      "heading": "Oswald",
+      "body": "Lora",
+      "vibe": "Sfilate, teatro, rassegne culturali, degustazioni, rievocazioni storiche"
+    },
+    "swiss_grid": {
+      "heading": "Helvetica Now Display / Neue Haas Grotesk",
+      "body": "IBM Plex Mono",
+      "vibe": "Architettura, talk, design week, conferenze tech, esposizioni"
+    },
+    "warm_craft": {
+      "heading": "Playfair Display",
+      "body": "Plus Jakarta Sans",
+      "vibe": "Feste in piazza, mercatini artigianali, sagre gourmet, laboratori"
+    }
+  },
+  "palettes": {
+    "brutalist_acid": { "bg": "#0E0E10", "fg": "#F5F5F0", "accent": "#D4FF00" },
+    "swiss_international": { "bg": "#F4F1EA", "fg": "#111111", "accent": "#E62E25" },
+    "carnival_velvet": { "bg": "#1A1228", "fg": "#FBF5E9", "accent": "#E8A331" },
+    "terracotta_piazza": { "bg": "#F7EFE4", "fg": "#1E242B", "accent": "#C84B31" }
+  },
+  "templates": [
+    {
+      "id": "swiss-asymmetric-01",
+      "style": "Swiss Grid / Asimmetrico",
+      "format": "Poster (Vertical 42x59.4cm)",
+      "recommended_for": ["mostre", "talk", "rassegne", "design", "architettura"],
+      "brand_template_id": "INSERISCI_BRAND_TEMPLATE_ID",
+      "master_design_id": "INSERISCI_DESIGN_ID",
+      "font_pairing": "swiss_grid",
+      "palette": "swiss_international",
+      "fields": {
+        "kicker": { "type": "text", "max_words": 4, "align": "start", "note": "Categoria o rassegna in alto a sinistra" },
+        "headline": { "type": "text", "max_words": 5, "align": "start", "min_height_pct": 25, "note": "Titolo dominante su 2-3 righe" },
+        "subhead": { "type": "text", "max_words": 10, "align": "start", "note": "Sottotitolo sintetico" },
+        "date_time": { "type": "text", "max_words": 6, "align": "start", "note": "Es. SAB 14 NOV · H 18:30" },
+        "venue": { "type": "text", "max_words": 6, "align": "start", "note": "Luogo e città" },
+        "cta": { "type": "text", "max_words": 4, "align": "start", "note": "Invito pulito, es. INGRESSO LIBERO" },
+        "hero_image": { "type": "image", "note": "Immagine fotografica o grafica principale" }
+      }
+    },
+    {
+      "id": "brutalist-festival-01",
+      "style": "Brutalist / Bold Typography",
+      "format": "Poster (Vertical 42x59.4cm)",
+      "recommended_for": ["festival", "concerti", "dj set", "street food", "eventi giovani"],
+      "brand_template_id": "INSERISCI_BRAND_TEMPLATE_ID",
+      "master_design_id": "INSERISCI_DESIGN_ID",
+      "font_pairing": "impact_modern",
+      "palette": "brutalist_acid",
+      "fields": {
+        "kicker": { "type": "text", "max_words": 3, "align": "start" },
+        "headline": { "type": "text", "max_words": 4, "align": "start", "min_height_pct": 30 },
+        "lineup_or_highlights": { "type": "text", "max_words": 12, "align": "start" },
+        "date_time": { "type": "text", "max_words": 6, "align": "start" },
+        "venue": { "type": "text", "max_words": 6, "align": "start" },
+        "cta": { "type": "text", "max_words": 4, "align": "start" },
+        "hero_image": { "type": "image" }
+      }
+    },
+    {
+      "id": "editorial-masquerade-01",
+      "style": "Editorial / Classico Contemporaneo",
+      "format": "Poster (Vertical 42x59.4cm)",
+      "recommended_for": ["sfilate in maschera", "carnevale", "teatro", "eventi in piazza", "feste storiche"],
+      "brand_template_id": "INSERISCI_BRAND_TEMPLATE_ID",
+      "master_design_id": "INSERISCI_DESIGN_ID",
+      "font_pairing": "editorial_classic",
+      "palette": "carnival_velvet",
+      "fields": {
+        "kicker": { "type": "text", "max_words": 4, "align": "start" },
+        "headline": { "type": "text", "max_words": 5, "align": "start", "min_height_pct": 25 },
+        "subhead": { "type": "text", "max_words": 10, "align": "start" },
+        "date_time": { "type": "text", "max_words": 6, "align": "start" },
+        "venue": { "type": "text", "max_words": 6, "align": "start" },
+        "cta": { "type": "text", "max_words": 4, "align": "start" },
+        "hero_image": { "type": "image" }
+      }
+    }
+  ]
+}

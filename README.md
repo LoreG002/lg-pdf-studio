@@ -21,3 +21,8 @@ LG PDF Studio is an LLM-driven, headless publishing system designed to generate 
 * Specializes in folded and marketing-oriented layouts, including A4 trifolds, bifold flyers, and digital catalogs.
 * Implements strict marketing design principles, enforcing strong cover headlines with a maximum of 8 words and clear typographic hierarchies.
 * Automatically calculates a 3mm bleed margin (+6mm total per side) for physical typography printing and provides user warnings regarding RGB to CMYK color conversions.
+
+### Canva Poster — Art Director Mode (`canva-poster`)
+* Configures the agent as an agency Art Director to create modern event posters on Canva via the Canva MCP (`autofill-design`, `copy-design` + `perform-editing-operations`, or `create-design`).
+* Enforces a curated human template catalog (`references/template-catalog.json`), strict font pairings (*Monument Extended + Inter*, *Oswald + Lora*, *Helvetica Now Display + IBM Plex Mono*, *Playfair Display + Plus Jakarta Sans*), left-aligned asymmetric grids, headline dominance (≥ 25% page height), and ≥ 30% negative space.
+* Applies strict visual copywriting rules (≤ 35 words total) and automatically bans FOMO/commercial pressure phrases (e.g., stock or costume scarcity warnings).
