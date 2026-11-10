@@ -1,6 +1,6 @@
-# PDF Studio: Agentic Document Generation Pipeline
+# LG PDF Studio: Agentic Document Generation Pipeline
 
-PDF Studio is an LLM-driven, headless publishing system designed to generate pixel-perfect, professional PDFs from HTML/CSS templates using the Model Context Protocol (MCP).
+LG PDF Studio is an LLM-driven, headless publishing system designed to generate pixel-perfect, professional PDFs from HTML/CSS templates using the Model Context Protocol (MCP).
 
 ## 🛠️ Technologies
 
