@@ -1,0 +1,10 @@
+# File di sistema macOS
+.DS_Store
+
+# Output e file temporanei
+*.pdf
+*.png
+*.log
+
+# Cache di Python (se usi il server HTTP)
+__pycache__/

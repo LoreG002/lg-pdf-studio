@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--headless",
+        "--caps=pdf",
+        "--output-dir=/Users/lorenzogiannetti/Documents/PDF-Studio"
+      ]
+    }
+  }
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>{{TITOLO_DOCUMENTO}}</title>
+<!--
+  PDF Studio — Template documento A4 (preventivo / report / offerta / company profile)
+  Sostituisci i segnaposto {{...}}, adatta le variabili CSS al brand, duplica <section class="page">.
+-->
+<style>
+  :root {
+    --primary: #1F3A5F;      /* colore brand principale */
+    --accent:  #E07A3F;      /* colore accento */
+    --ink:     #1D232B;      /* testo */
+    --muted:   #6B7480;      /* testo secondario */
+    --line:    #E3E7EC;      /* divisori */
+    --soft:    #F5F7FA;      /* sfondi tenui */
+    --font-head: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: var(--font-body); color: var(--ink); font-size: 10pt; line-height: 1.5; background: #fff; }
+
+  .page { width: 210mm; height: 297mm; position: relative; overflow: hidden; page-break-after: always; break-after: page; padding: 22mm 20mm 26mm; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+
+  /* Copertina */
+  .cover { padding: 0; background: var(--primary); color: #fff; display: flex; flex-direction: column; justify-content: space-between; }
+  .cover .top { padding: 22mm 20mm 0; display: flex; justify-content: space-between; align-items: center; }
+  .cover .logo { font-family: var(--font-head); font-weight: 800; font-size: 16pt; letter-spacing: .5px; }
+  .cover .doc-type { font-size: 9pt; letter-spacing: 3px; text-transform: uppercase; opacity: .8; }
+  .cover .hero { padding: 0 20mm; }
+  .cover .kicker { color: var(--accent); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-size: 9pt; margin-bottom: 6mm; }
+  .cover h1 { font-family: var(--font-head); font-size: 38pt; line-height: 1.05; font-weight: 800; max-width: 150mm; }
+  .cover .sub { margin-top: 8mm; font-size: 13pt; opacity: .85; max-width: 140mm; }
+  .cover .band { background: rgba(255,255,255,.08); padding: 10mm 20mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8mm; font-size: 9pt; }
+  .cover .band b { display: block; font-size: 7.5pt; letter-spacing: 2px; text-transform: uppercase; opacity: .65; margin-bottom: 1mm; font-weight: 600; }
+  .cover .shape { position: absolute; right: -40mm; top: 60mm; width: 140mm; height: 140mm; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--accent), transparent 70%); opacity: .35; }
+
+  /* Header / footer pagine interne */
+  .running-head { position: absolute; top: 10mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; font-size: 7.5pt; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+  .running-foot { position: absolute; bottom: 10mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; font-size: 7.5pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 3mm; }
+
+  h2 { font-family: var(--font-head); font-size: 20pt; color: var(--primary); line-height: 1.15; margin-bottom: 4mm; }
+  h2 .num { color: var(--accent); margin-right: 3mm; }
+  h3 { font-family: var(--font-head); font-size: 12pt; color: var(--primary); margin: 6mm 0 2mm; }
+  p { margin-bottom: 3mm; }
+  .lead { font-size: 12pt; color: var(--muted); margin-bottom: 8mm; max-width: 150mm; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; }
+  .card { background: var(--soft); border-radius: 3mm; padding: 6mm; }
+  .card .icon { width: 10mm; height: 10mm; border-radius: 2.5mm; background: var(--accent); margin-bottom: 4mm; }
+  .stat { font-family: var(--font-head); font-size: 26pt; font-weight: 800; color: var(--accent); line-height: 1; }
+
+  /* Tabella voci / preventivo */
+  table.items { width: 100%; border-collapse: collapse; margin: 6mm 0; font-size: 9.5pt; }
+  table.items th { text-align: left; background: var(--primary); color: #fff; padding: 3mm 4mm; font-weight: 600; font-size: 8pt; letter-spacing: 1px; text-transform: uppercase; }
+  table.items td { padding: 3.2mm 4mm; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.items tr:nth-child(even) td { background: var(--soft); }
+  table.items .r { text-align: right; white-space: nowrap; }
+  table.items td small { color: var(--muted); display: block; }
+  .totals { margin-left: auto; width: 80mm; font-size: 10pt; }
+  .totals div { display: flex; justify-content: space-between; padding: 2mm 0; border-bottom: 1px solid var(--line); }
+  .totals .grand { border: 0; background: var(--primary); color: #fff; padding: 4mm; margin-top: 2mm; border-radius: 2mm; font-weight: 700; font-size: 12pt; }
+
+  .callout { border-left: 3px solid var(--accent); background: var(--soft); padding: 5mm 6mm; margin: 6mm 0; }
+  .sign { display: grid; grid-template-columns: 1fr 1fr; gap: 20mm; margin-top: 18mm; font-size: 9pt; color: var(--muted); }
+  .sign div { border-top: 1px solid var(--ink); padding-top: 2mm; }
+</style>
+</head>
+<body>
+
+<!-- ===== COPERTINA ===== -->
+<section class="page cover">
+  <div class="shape"></div>
+  <div class="top">
+    <div class="logo">{{NOME_AZIENDA}}</div>
+    <div class="doc-type">{{TIPO_DOCUMENTO}}</div>
+  </div>
+  <div class="hero">
+    <div class="kicker">{{KICKER}}</div>
+    <h1>{{TITOLO_DOCUMENTO}}</h1>
+    <p class="sub">{{SOTTOTITOLO}}</p>
+  </div>
+  <div class="band">
+    <div><b>Preparato per</b>{{CLIENTE}}</div>
+    <div><b>Data</b>{{DATA}}</div>
+    <div><b>Riferimento</b>{{NUMERO_DOC}}</div>
+  </div>
+</section>
+
+<!-- ===== PAGINA INTERNA ===== -->
+<section class="page">
+  <div class="running-head"><span>{{NOME_AZIENDA}}</span><span>{{TIPO_DOCUMENTO}} · {{NUMERO_DOC}}</span></div>
+
+  <h2><span class="num">01</span>{{TITOLO_SEZIONE}}</h2>
+  <p class="lead">{{INTRO_SEZIONE}}</p>
+
+  <div class="grid-3">
+    <div class="card"><div class="icon"></div><h3>{{PUNTO_1}}</h3><p>{{TESTO_1}}</p></div>
+    <div class="card"><div class="icon"></div><h3>{{PUNTO_2}}</h3><p>{{TESTO_2}}</p></div>
+    <div class="card"><div class="icon"></div><h3>{{PUNTO_3}}</h3><p>{{TESTO_3}}</p></div>
+  </div>
+
+  <h2 style="margin-top:12mm"><span class="num">02</span>Dettaglio economico</h2>
+  <table class="items">
+    <thead><tr><th>Descrizione</th><th class="r">Q.tà</th><th class="r">Prezzo</th><th class="r">Totale</th></tr></thead>
+    <tbody>
+      <tr><td>{{VOCE}}<small>{{DETTAGLIO_VOCE}}</small></td><td class="r">1</td><td class="r">0,00 €</td><td class="r">0,00 €</td></tr>
+    </tbody>
+  </table>
+  <div class="totals">
+    <div><span>Imponibile</span><span>0,00 €</span></div>
+    <div><span>IVA 22%</span><span>0,00 €</span></div>
+    <div class="grand"><span>Totale</span><span>0,00 €</span></div>
+  </div>
+
+  <div class="callout"><b>Condizioni:</b> {{CONDIZIONI}}</div>
+
+  <div class="sign"><div>Per {{NOME_AZIENDA}}</div><div>Per accettazione — {{CLIENTE}}</div></div>
+
+  <div class="running-foot"><span>{{RAGIONE_SOCIALE}} · P.IVA {{PIVA}} · {{CONTATTI}}</span><span>2</span></div>
+</section>
+
+</body>
+</html>

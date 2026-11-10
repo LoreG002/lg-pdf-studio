@@ -1,0 +1,13 @@
+{
+  "name": "lg-pdf-studio",
+  "displayName": "LG PDF Studio",
+  "version": "1.0.0",
+  "description": "Genera PDF professionali (preventivi, report, listini, menu, company profile) e brochure/flyer per attività, impaginati in HTML/CSS e stampati in PDF tramite il Playwright MCP o Chrome headless.",
+  "logo": "assets/logo.png",
+  "author": { "name": "Lorenzo Giannetti" },
+  "suggestedPrompts": [
+    "Crea una brochure a tre ante per il mio ristorante 'Trattoria da Gino' a Firenze",
+    "Genera un preventivo professionale in PDF per un sito web da 3.500 €",
+    "Fai un company profile di 4 pagine per la mia agenzia immobiliare"
+  ]
+}

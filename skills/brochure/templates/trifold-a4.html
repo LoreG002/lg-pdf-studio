@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>{{NOME_ATTIVITA}} — Brochure</title>
+<!--
+  PDF Studio — Brochure a tre ante (trifold), A4 orizzontale, 2 facciate.
+  Ordine pannelli per piega "a portafoglio" (roll fold):
+    Facciata ESTERNA: [interno-risvolto | retro | copertina]
+    Facciata INTERNA: [pannello 1 | pannello 2 | pannello 3]
+  Ogni pannello: 99 / 99 / 99 mm (il risvolto è leggermente più stretto: 97 mm) su 297 mm.
+-->
+<style>
+  :root {
+    --primary: #2E5E4E;
+    --accent:  #D9A441;
+    --ink:     #1E2422;
+    --muted:   #66706C;
+    --cream:   #F7F3EA;
+    --font-head: "Playfair Display", Georgia, "Times New Roman", serif;
+    --font-body: "Lato", "Helvetica Neue", Arial, sans-serif;
+  }
+  @page { size: A4 landscape; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: var(--font-body); color: var(--ink); font-size: 9.5pt; line-height: 1.5; }
+
+  .sheet { width: 297mm; height: 210mm; display: grid; grid-template-columns: 97mm 100mm 100mm; page-break-after: always; break-after: page; overflow: hidden; }
+  .sheet:last-child { page-break-after: auto; break-after: auto; }
+  .panel { position: relative; padding: 14mm 11mm; overflow: hidden; }
+
+  h1 { font-family: var(--font-head); font-size: 30pt; line-height: 1.05; }
+  h2 { font-family: var(--font-head); font-size: 17pt; color: var(--primary); margin-bottom: 4mm; line-height: 1.15; }
+  h3 { font-size: 10pt; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin: 5mm 0 1.5mm; }
+  p { margin-bottom: 2.5mm; }
+  .eyebrow { font-size: 8pt; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 4mm; }
+
+  /* Copertina */
+  .cover { background: var(--primary); color: #fff; display: flex; flex-direction: column; justify-content: space-between; }
+  .cover .art { position: absolute; inset: 0; background:
+      radial-gradient(circle at 80% 15%, rgba(217,164,65,.55), transparent 45%),
+      radial-gradient(circle at 10% 90%, rgba(255,255,255,.12), transparent 40%); }
+  .cover > * { position: relative; }
+  .cover .brand { font-family: var(--font-head); font-size: 13pt; letter-spacing: 1px; }
+  .cover .tagline { font-size: 11pt; opacity: .9; margin-top: 5mm; }
+  .cover .bottom { font-size: 8pt; letter-spacing: 2px; text-transform: uppercase; opacity: .8; }
+
+  /* Retro (contatti) */
+  .back { background: var(--cream); display: flex; flex-direction: column; justify-content: center; text-align: center; }
+  .back .contact { margin: 3mm 0; }
+  .back .contact b { display: block; font-size: 7.5pt; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .qr { width: 28mm; height: 28mm; margin: 6mm auto 0; border: 2px dashed var(--primary); display: grid; place-items: center; font-size: 7pt; color: var(--muted); }
+
+  .flap { background: #fff; }
+  .list { list-style: none; }
+  .list li { padding: 2mm 0 2mm 6mm; position: relative; border-bottom: 1px solid #ECE7DB; }
+  .list li::before { content: ""; position: absolute; left: 0; top: 3.6mm; width: 2.4mm; height: 2.4mm; border-radius: 50%; background: var(--accent); }
+
+  .imgbox { height: 52mm; border-radius: 3mm; margin: -2mm 0 5mm; background: linear-gradient(135deg, var(--primary), var(--accent)); background-size: cover; background-position: center; }
+  .price { display: flex; justify-content: space-between; border-bottom: 1px dotted #C9C2B2; padding: 1.6mm 0; }
+  .price span:last-child { font-weight: 700; color: var(--primary); }
+  .quote { font-family: var(--font-head); font-style: italic; font-size: 12pt; color: var(--primary); border-left: 3px solid var(--accent); padding-left: 4mm; margin: 5mm 0; }
+  .alt { background: var(--cream); }
+</style>
+</head>
+<body>
+
+<!-- ===== FACCIATA ESTERNA ===== -->
+<section class="sheet">
+  <div class="panel flap">
+    <div class="eyebrow">{{EYEBROW_RISVOLTO}}</div>
+    <h2>{{TITOLO_RISVOLTO}}</h2>
+    <p>{{TESTO_RISVOLTO}}</p>
+    <ul class="list">
+      <li>{{PUNTO_1}}</li><li>{{PUNTO_2}}</li><li>{{PUNTO_3}}</li><li>{{PUNTO_4}}</li>
+    </ul>
+  </div>
+  <div class="panel back">
+    <h2>Vieni a trovarci</h2>
+    <div class="contact"><b>Indirizzo</b>{{INDIRIZZO}}</div>
+    <div class="contact"><b>Telefono</b>{{TELEFONO}}</div>
+    <div class="contact"><b>Web &amp; social</b>{{SITO}} · {{SOCIAL}}</div>
+    <div class="contact"><b>Orari</b>{{ORARI}}</div>
+    <div class="qr">QR code</div>
+  </div>
+  <div class="panel cover">
+    <div class="art"></div>
+    <div class="brand">{{NOME_ATTIVITA}}</div>
+    <div>
+      <div class="eyebrow">{{SETTORE_CITTA}}</div>
+      <h1>{{TITOLO_COPERTINA}}</h1>
+      <p class="tagline">{{TAGLINE}}</p>
+    </div>
+    <div class="bottom">{{CLAIM_BREVE}}</div>
+  </div>
+</section>
+
+<!-- ===== FACCIATA INTERNA ===== -->
+<section class="sheet">
+  <div class="panel">
+    <div class="eyebrow">Chi siamo</div>
+    <h2>{{TITOLO_CHI_SIAMO}}</h2>
+    <p>{{STORIA}}</p>
+    <div class="quote">“{{CITAZIONE}}”</div>
+    <p>{{VALORI}}</p>
+  </div>
+  <div class="panel alt">
+    <div class="imgbox"></div>
+    <div class="eyebrow">Cosa offriamo</div>
+    <h2>{{TITOLO_SERVIZI}}</h2>
+    <h3>{{SERVIZIO_1}}</h3><p>{{DESC_1}}</p>
+    <h3>{{SERVIZIO_2}}</h3><p>{{DESC_2}}</p>
+  </div>
+  <div class="panel">
+    <div class="eyebrow">{{EYEBROW_OFFERTA}}</div>
+    <h2>{{TITOLO_OFFERTA}}</h2>
+    <div class="price"><span>{{VOCE_1}}</span><span>{{PREZZO_1}}</span></div>
+    <div class="price"><span>{{VOCE_2}}</span><span>{{PREZZO_2}}</span></div>
+    <div class="price"><span>{{VOCE_3}}</span><span>{{PREZZO_3}}</span></div>
+    <h3>Perché sceglierci</h3>
+    <ul class="list"><li>{{PLUS_1}}</li><li>{{PLUS_2}}</li><li>{{PLUS_3}}</li></ul>
+  </div>
+</section>
+
+</body>
+</html>
